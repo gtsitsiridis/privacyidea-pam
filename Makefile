@@ -27,6 +27,7 @@ clean:
 
 install: all
 	strip --strip-unneeded $(target)
+	mkdir -p $(libdir)
 	cp $(target) $(libdir)/$(target)
 
 uninstall:
