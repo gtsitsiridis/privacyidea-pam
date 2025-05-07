@@ -3,8 +3,8 @@ CFLAGS = -g -Wall -fPIC -Iinclude
 LDFLAGS = -Wno-undef -lcurl -lcrypto -lssl -lpam --shared
 
 # Determine which folder to use
-libdir.x86_64 = /lib64
-libdir.i686   = /lib
+libdir.x86_64 = /lib64/security
+libdir.i686   = /lib/security
 
 MACHINE := $(shell uname -m)
 libdir = $(libdir.$(MACHINE))
@@ -27,6 +27,7 @@ clean:
 
 install: all
 	strip --strip-unneeded $(target)
+	mkdir -p $(libdir)
 	cp $(target) $(libdir)/$(target)
 
 uninstall:
